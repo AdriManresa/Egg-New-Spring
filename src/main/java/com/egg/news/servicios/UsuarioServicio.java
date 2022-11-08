@@ -65,6 +65,10 @@ public class UsuarioServicio implements UserDetailsService {
             throw new MiException("Las contraserñas ingresadas deben ser iguales");
         }
     }
+    
+    public Usuario getOne(String id){
+        return usuarioRepositorio.getOne(id);
+    }
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {

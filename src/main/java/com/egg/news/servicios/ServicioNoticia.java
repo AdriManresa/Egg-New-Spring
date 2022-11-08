@@ -1,6 +1,5 @@
 package com.egg.news.servicios;
 
-import com.egg.news.entidades.Foto;
 import com.egg.news.entidades.Noticia;
 import com.egg.news.excepciones.MiException;
 import com.egg.news.repositorio.NoticiaRepositorio;
@@ -12,7 +11,6 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -20,81 +18,67 @@ import org.springframework.web.multipart.MultipartFile;
  */
 @Service
 public class ServicioNoticia {
-
+    
     @Autowired
     private FotoServicio fotoServicio;
-
+    
     @Autowired
     private NoticiaRepositorio noticiasRepositorio;
-
+    
     @Transactional
-    public void crearNoticia(String titulo, String cuerpo, MultipartFile archivo) throws MiException, IOException {
-
-        validarAtributos(titulo, cuerpo, archivo);
-
+    public void crearNoticia(String titulo, String cuerpo) throws MiException, IOException {
+        
+        validarAtributos(titulo, cuerpo);
+        
         Noticia noticia = new Noticia();
-
+        
         noticia.setTitulo(titulo);
         noticia.setCuerpo(cuerpo);
         noticia.setAlta(new Date());
         noticia.setBaja(true);
-
-        Foto foto = fotoServicio.guardar(archivo);
-        noticia.setFoto(foto);
-
+        
         noticiasRepositorio.save(noticia);
     }
-
+    
     public List<Noticia> listarNoticias() {
-
+        
         List<Noticia> noticias = new ArrayList();
         noticias = noticiasRepositorio.findAll();
-
+        
         return noticias;
     }
 
-    public Noticia buscarPorId(String id) {
-        Noticia noticia = new Noticia();
-        noticia = noticiasRepositorio.buscarporId(id);
-        return noticia;
+    public Noticia  getOne(String id) {
+        return noticiasRepositorio.getOne(id);
     }
-  @Transactional
-    public void modificarNoticia(Long id, String titulo, String cuerpo, MultipartFile archivo) throws MiException, IOException {
-
-        validarAtributos(titulo, cuerpo, archivo);
+    
+    @Transactional
+    public void modificarNoticia(String id, String titulo, String cuerpo) throws MiException, IOException {
+        
+        validarAtributos(titulo, cuerpo);
         Optional<Noticia> respuesta = noticiasRepositorio.findById(id);
-
+        
         if (respuesta.isPresent()) {
             Noticia noticia = respuesta.get();
-
+            
             noticia.setTitulo(titulo);
             noticia.setCuerpo(cuerpo);
             
-            String idFoto = null;
-            if (noticia.getFoto()!=null) {
-                idFoto = noticia.getFoto().getId();
-            }
-            Foto foto = fotoServicio.actualizar(idFoto, archivo);
-            noticia.setFoto(foto);
-
             noticiasRepositorio.save(noticia);
         } else {
             throw new MiException("No se encontró la noticia");
         }
     }
     
-    private void validarAtributos(String titulo, String cuerpo, MultipartFile archivo) throws MiException {
-
+    private void validarAtributos(String titulo, String cuerpo) throws MiException {
+        
         if (titulo.isEmpty() || titulo == null) {
-            throw new MiException("El titulo no puede ser nulo");
+            throw new MiException("El Titulo no puede estar vacio");
         }
         if (cuerpo.isEmpty() || cuerpo == null) {
-            throw new MiException("El cuerpo no puede ser nulo");
+            throw new MiException("El Cuerpo no puede estar vacio");
         }
-        if (archivo.isEmpty() || archivo == null) {
-            throw new MiException("La foto no puede ser nulo");
-        }
-
+        
     }
-
+    
 }

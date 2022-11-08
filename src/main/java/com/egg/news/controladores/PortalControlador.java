@@ -1,18 +1,14 @@
 package com.egg.news.controladores;
 
-import com.egg.news.entidades.Foto;
-import com.egg.news.entidades.Noticia;
 import com.egg.news.excepciones.MiException;
 import com.egg.news.servicios.FotoServicio;
 import com.egg.news.servicios.ServicioNoticia;
 import com.egg.news.servicios.UsuarioServicio;
-import java.util.ArrayList;
 
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
+
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,12 +21,36 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 @Controller
 @RequestMapping("/")
-@Slf4j
 public class PortalControlador {
 
-    @GetMapping("/")
-    public String index() {
-        return "inicio.html";
+    @Autowired
+    ServicioNoticia noticiasService;
+
+    @Autowired
+    FotoServicio fotoService;
+
+    @Autowired
+    UsuarioServicio usuarioService;
+
+    @GetMapping("/registro")
+    public String registrar() {
+        return "registro";
     }
 
+    @PostMapping("/registro")
+    public String registro(String nombreUsuario, @RequestParam String email, @RequestParam String password, @RequestParam String password2, ModelMap modelo) throws MiException {
+        try {
+            usuarioService.registrar(nombreUsuario, email, password, password2);
+
+        } catch (MiException ex) {
+            modelo.addAttribute("nombreUsuario", nombreUsuario);
+            modelo.addAttribute("email", email);
+            modelo.addAttribute("password", password);
+            modelo.addAttribute("password2", password2);
+            modelo.put("error", ex.getMessage());
+
+            return "registro";
+        }
+        return "index";
+    }
 }

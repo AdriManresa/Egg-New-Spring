@@ -23,17 +23,18 @@ import org.hibernate.annotations.GenericGenerator;
 @Data
 @Entity
 public class Noticia implements Serializable {
-    
+
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
-    
+
     private String titulo;
+
     private String cuerpo;
     @OneToOne
     private Foto foto;
-    
+
     @Temporal(TemporalType.TIMESTAMP)
     private Date alta;
     private boolean baja;

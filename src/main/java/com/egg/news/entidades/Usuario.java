@@ -41,6 +41,4 @@ public class Usuario implements Serializable {
     @Enumerated(EnumType.STRING)
     private Rol rol;
 
-
-
 }

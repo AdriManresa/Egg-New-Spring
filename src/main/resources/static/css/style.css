@@ -1,0 +1,88 @@
+:root {
+    --amarilloegg: #ffcb00;
+    --amarilloeggtrans: #ffcc006c;
+    --amarillofondos: #fadc66;
+    --fondos: rgba(255, 255, 255, 0);
+  }
+  html {
+    min-height: 100%;
+    position: relative;
+  }
+  body {
+    background-color: var(--amarilloeggtrans);
+    height: 100%;
+    background-image: url(/img/background.png);
+    background-image: url(/img/background.png),
+   linear-gradient(to bottom, --amarilloeggtrans, #ffffffe1);
+    margin: 0;
+    margin-bottom: 40px;
+  }
+  .form{
+      background-color: var(--amarillofondos);
+      width: 100%;
+      margin: auto;
+  }
+  .container{
+      background-color: var(--amarillofondos);
+      margin-top: 10rem;
+  }
+  .textarea{
+    height: 12em;
+  }
+  .box-shadow {
+    box-shadow: 22px 24px 43px 31px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 22px 24px 43px 31px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 22px 24px 43px 31px rgba(0, 0, 0, 0.75);
+  }
+  #barra-de-nav .nav .nav-tabs {
+    width: 5%;
+    height: auto;
+  }
+  .btn .btn-outline-warning .boton {
+    background-color: var(--amarilloegg);
+    border-color: var(--amarilloegg);
+  }
+  .nav-item .logo {
+    width: 3rem;
+    height: auto;
+  }
+  
+  .topnav a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  
+  /* Create two unequal columns that floats next to each other */
+  /* Left column */
+  .leftcolumn {
+    float: left;
+    width: 75%;
+  }
+  
+  .navegador {
+    background-color: rgb(255, 255, 255);
+    margin-bottom: 1rem;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    width: 100%;
+  }
+  .container {
+    height: 43rem;
+    width: auto;
+    border-radius: 3%;
+    margin-top: 2%;
+    background-color: var(--amarillofondos);
+  }
+  
+  #labelregistro {
+    width: auto;
+    height: auto;
+    margin: 0;
+    margin-bottom: 3rem;
+  }
+  .cerrarsess {
+    margin-left: 2rem;
+    margin-bottom: 2rem;
+  }
+  
