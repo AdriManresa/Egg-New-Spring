@@ -22,10 +22,7 @@
       width: 100%;
       margin: auto;
   }
-  .container{
-      background-color: var(--amarillofondos);
-      margin-top: 10rem;
-  }
+
   .textarea{
     height: 12em;
   }
@@ -67,13 +64,7 @@
     top: 0;
     width: 100%;
   }
-  .container {
-    height: 43rem;
-    width: auto;
-    border-radius: 3%;
-    margin-top: 2%;
-    background-color: var(--amarillofondos);
-  }
+
   
   #labelregistro {
     width: auto;

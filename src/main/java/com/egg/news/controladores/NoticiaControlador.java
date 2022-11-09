@@ -3,7 +3,6 @@ package com.egg.news.controladores;
 import com.egg.news.entidades.Noticia;
 import com.egg.news.excepciones.MiException;
 import com.egg.news.servicios.ServicioNoticia;
-import com.egg.news.servicios.UsuarioServicio;
 import java.io.IOException;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -36,6 +36,11 @@ public class PortalControlador {
     public String registrar() {
         return "registro";
     }
+        @GetMapping("/login")
+    public String login() {
+        return "login.html";
+    }
+
 
     @PostMapping("/registro")
     public String registro(String nombreUsuario, @RequestParam String email, @RequestParam String password, @RequestParam String password2, ModelMap modelo) throws MiException {
